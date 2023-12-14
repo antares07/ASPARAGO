@@ -42,15 +42,15 @@ def get_ASPA_dataset():
 
     #Generate ASPA
     print('Turning spectral dictionary into ASPA matrix...')
-    get_aspa = GetASPADataset(dataset=dataset_dict, norm_idx_path='/home/pagliaro/Dataset_Generator/wn_grid_all_points/exogan_norm_bands_pos_10.grid')
+    get_aspa = GetASPADataset(dataset=dataset_dict, norm_idx_path='exogan_norm_bands_pos_10.grid')
     aspa_dataset = get_aspa.get_aspa_dataset()
 
     return aspa_dataset
 
-def generate_hdf5_dataset(total_chunk):
-    name = socket.gethostname()+datetime.today().strftime('%Y%m%d%H%M%S')
+def generate_hdf5_dataset(total_chunk=64, directory=None):
+    name = socket.gethostname()+datetime.today().strftime('%d%m%Y%H%M%S')
     print(f'Creating HDF5 dataset {name}...')
-    with h5py.File(f'/home/pagliaro/SharedDataset/{name}.h5', 'w') as file:
+    with h5py.File(f'{directory}/{name}.h5', 'w') as file:
         for chunk in range(total_chunk):
             print(f'Generating chunk {chunk}...')
             group = file.create_group(str(chunk))

@@ -291,7 +291,7 @@ class GetSpectraDictionary():
         #Star
         star = BlackbodyStar(temperature=star_temp, radius=star_radius)
 
-        all_inst = WavelengthGrid('/home/pagliaro/ASPAGenerator/all_instruments_binned_1600.grid')
+        all_inst = WavelengthGrid('all_instruments_binned_1600.grid')
         wn_grid_all_inst = all_inst.wn_grid()
         
         #Parameters list
